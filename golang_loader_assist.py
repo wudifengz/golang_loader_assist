@@ -448,5 +448,22 @@ def main():
     strings_added = strings_init()
     info('Found and successfully created %d strings!' % strings_added)
 
-if __name__ == "__main__":
-    main()
+class golang_loader(idaapi.plugin_t):
+    flags=0
+    comment="construct golang function names."
+    help="See https://github.com/strazzere/golang_loader_assist"
+    wanted_name="Golang Loader"
+    wanted_hotkey=""
+    
+    def init(self):
+        idaapi.msg("GoLand Loader init complie.\n")
+        return idaapi.PLUGIN_OK
+        
+    def run(self,argv):
+        main()
+    
+    def term(self):
+        pass
+
+def PLUGIN_ENTRY():
+    return golang_loader()
